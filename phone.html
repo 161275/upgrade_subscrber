@@ -1,0 +1,70 @@
+
+<html ng-app="app">
+<head>
+<title>
+	Add to remove from rows from table.
+</title>
+<link rel="stylesheet" href="phone.css">
+<script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+<script type="text/javascript">
+	app = angular.module('app',[]);
+	app.controller('MyCtrl',['$scope', function($scope) {
+		$scope.myData = [];
+		$scope.addData = function() {
+			$scope.myData.push({'name1': $scope.inData,'phoneno':$scope.phone, 'done':false})
+			$scope.inData="";
+		}
+		$scope.removeData = function(selData) {
+			$scope.myData.splice($scope.myData.indexOf(selData),1);
+		}
+	}]);
+</script>
+</head>
+<body ng-controller="MyCtrl">
+	<center>
+
+<div class="aa_htmlTable">
+		<div style="background-color: #bbdefb; padding: 10px">
+				<h1>Add or Remove Subscriber</h1>
+				</div>
+				<div style="background-color: #e57373; padding: 10px">
+					<h2>Add Subscriber</h2>
+				<form name="skillsFrm" ng-submit="addSkill()">
+				<input type="text" class="form-control" name="inData" ng-model="inData" placeholder="Name" required/>
+				<input type="text" name="phone" ng-model="phone" placeholder="Phone No" required/>
+				<input type="button" ng-click="addData()" value="Subscribe" />
+				</form>
+	<h2>Subscriber's list</h2>
+		<table>
+		  <thead>
+			<tr>
+			  <th>Name</th>
+			  <th>Phone No</th>
+			  <th>Remove?</th>
+			</tr>
+		  </thead>
+		  <tbody>
+				<tr ng-repeat="data in myData" >
+						<!-- <tr ng-repeat="val in data" > -->
+					<td>{{data.name1}}</td>
+					<td>{{data.phoneno}}</td>
+					<td><a href="" ng-click="removeData(data)">Remove</a></td>
+				<!-- </tr> -->
+				</tr>
+		  </tbody>
+		</table>
+	  </div>
+<!-- <table border="1">
+		<td>Name</td>
+		<td>Phone No</td>
+		<td></td>
+	<tr ng-repeat="data in myData" >
+		<td>{{data.name1}}</td>
+		<td>{{data.phoneno}}</td>
+		<td><a href="" ng-click="removeData(data)">Remove</a></td>
+    </tr>
+</table> -->
+</div>
+</center>
+</body>
+</html>
